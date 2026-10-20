@@ -1,0 +1,61 @@
+site_name: 妖怪 Wiki
+site_description: 妖怪图鉴、技能、天赋特性、道具与战斗机制资料
+site_url: https://1037134254.github.io/yaoguai-wiki/
+docs_dir: docs
+site_dir: site
+
+theme:
+  name: material
+  language: zh
+  features:
+    - navigation.instant
+    - navigation.top
+    - navigation.tracking
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      toggle:
+        icon: material/weather-night
+        name: 切换到深色模式
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: teal
+      toggle:
+        icon: material/weather-sunny
+        name: 切换到浅色模式
+
+plugins:
+  - search:
+      lang: zh
+      # 中文分词, 需要 jieba
+      separator: '[\s\u200b\-]+'
+
+nav:
+  - 首页: README.md
+  - 妖怪图鉴: 妖怪图鉴.md
+  - 技能列表: 技能列表.md
+  - 天赋与特性: 天赋与特性.md
+  - 道具: 道具.md
+  - 进化: 进化.md
+  - 机制:
+      - 战斗机制: 战斗机制.md
+      - 养成机制: 养成机制.md
+
+# 205 个妖怪页和 143 个技能页不放进侧边栏, 通过表格链接和搜索访问
+not_in_nav: |
+  妖怪/*.md
+  技能/*.md
+
+markdown_extensions:
+  - tables
+  - toc:
+      permalink: true
+      # 保留中文标题作为锚点, 让 页面.md#中文标题 的链接可用
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - attr_list
